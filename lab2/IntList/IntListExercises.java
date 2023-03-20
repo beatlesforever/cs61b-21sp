@@ -70,6 +70,7 @@ public class IntListExercises {
         if (lst == null) {
             return false;
         }
+        /*
         IntList lst1 = lst;
         while(lst1!=null)
         {
@@ -79,15 +80,16 @@ public class IntListExercises {
             }
             lst1 = lst1.rest;
         }
-        /*
+        */
+
+
         boolean currElemIsPrime = Primes.isPrime(lst.first);
 
         if (currElemIsPrime) {
             lst.first *= lst.first;
         }
 
-        return currElemIsPrime || squarePrimes(lst.rest);
-        */
-        return true;
+        return squarePrimes(lst.rest) || currElemIsPrime;
+
     }
 }
