@@ -70,19 +70,23 @@ public class IntListExercises {
         if (lst == null) {
             return false;
         }
-        /*
+        int k = 1;
         IntList lst1 = lst;
         while(lst1!=null)
         {
             if(Primes.isPrime(lst1.first))
             {
+                k = 0;
                 lst1.first *= lst1.first;
             }
             lst1 = lst1.rest;
         }
-        */
+        if(k == 1){
+            return false;
+        }
+        return true;
 
-
+        /*
         boolean currElemIsPrime = Primes.isPrime(lst.first);
 
         if (currElemIsPrime) {
@@ -90,6 +94,6 @@ public class IntListExercises {
         }
 
         return squarePrimes(lst.rest) || currElemIsPrime;
-
+        */
     }
 }
