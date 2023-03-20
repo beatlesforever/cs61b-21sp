@@ -71,7 +71,7 @@ public class IntListExercises {
             return false;
         }
         IntList lst1 = lst;
-        while(lst1.rest!=null)
+        while(lst1!=null)
         {
             if(Primes.isPrime(lst1.first))
             {
