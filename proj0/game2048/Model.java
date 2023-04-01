@@ -234,22 +234,32 @@ public class Model extends Observable {
      */
     public static boolean atLeastOneMoveExists(Board b) {
         // TODO: Fill in this function.
+        if(emptySpaceExists(b)){
+            return true;//此时为空，直接返回true，因为只要有空的，就可以移动。那么为什么之前少了这个就不行了呢？
+            //哦，原来的空指针异常是因为我没有写存在空的直接返回，所以下面的比较中，会出现查询空位的value...自然就发生错误了
+            //为了避免NullPointerException，在查询前必须要判断是否为空，这是一个好的习惯
+        }
+        //    对这个来说
+        //    {0, 0, 0, 0},
+        //    {0, 0, 0, 0},
+        //    {0, 0, 0, 0},
+        //    {4, 0, 2, 2},
         for(int i = 0;i < b.size();i++) {
             for (int j = 0; j < b.size(); j++) {
                 Tile tile = b.tile(i, j);
                 if (tile == null) {
                     return true;
                 }
-                if (i >= 1 && tile.value() == b.tile(i - 1, j).value()) { //left
+                if (i >= 1 && b.tile(i - 1,j) != null && tile.value() == b.tile(i - 1, j).value()) {//left
                     return true;
                 }
-                if (i < b.size() - 1 && tile.value() == b.tile(i + 1, j).value()) { //right
+                if (i < b.size() - 1 && b.tile(i + 1,j) != null && tile.value() == b.tile(i + 1, j).value()) { //right
                     return true;
                 }
-                if (j < b.size() - 1 && tile.value() == b.tile(i, j + 1).value()) { //down
+                if (j < b.size() - 1 && b.tile(i,j + 1) != null && tile.value() == b.tile(i, j + 1).value()) { //down
                     return true;
                 }
-                if (j >= 1 && tile.value() == b.tile(i, j - 1).value()) {//up
+                if (j >= 1 && b.tile(i,j - 1) != null && tile.value() == b.tile(i, j - 1).value()) {//up
                     return true;
                 }
             }
